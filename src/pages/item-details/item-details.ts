@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
-import { NavController, NavParams } from 'ionic-angular';
+import {ActionSheetController, NavController, NavParams} from 'ionic-angular';
 
 
 @Component({
@@ -9,9 +9,37 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ItemDetailsPage {
   selectedItem: any;
+  pressedButton: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheet: ActionSheetController) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
+  }
+
+  openActionSheet() {
+    let actionSheet = this.actionSheet.create({
+      title: 'Prueba de action sheet',
+      buttons: [
+        {
+          text: 'Prueba',
+          handler: () => {
+            this.pressedButton='Prueba'
+          }
+        },
+        {
+          text: 'Prueba 2',
+          handler: () => {
+            this.pressedButton='Prueba 2'
+          }
+        },
+        {
+          text: 'Prueba 3',
+          handler: () => {
+            this.pressedButton='Prueba 3'
+          }
+        }
+      ]
+    });
+    actionSheet.present();
   }
 }
